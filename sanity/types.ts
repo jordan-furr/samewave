@@ -20,6 +20,7 @@ export type Post = {
   _updatedAt: string;
   _rev: string;
   title?: string;
+  year?: string;
   slug?: Slug;
   author?: {
     _ref: string;
@@ -284,3 +285,136 @@ export type SanityAssetSourceData = {
 
 export type AllSanitySchemaTypes = Post | Author | Category | BlockContent | SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityImageHotspot | SanityImageCrop | SanityFileAsset | SanityImageAsset | SanityImageMetadata | Geopoint | Slug | SanityAssetSourceData;
 export declare const internalGroqTypeReferenceTo: unique symbol;
+// Source: sanity/lib/queries.ts
+// Variable: POSTS_QUERY
+// Query: *[_type == "post" && defined(slug.current)][0...20]{  _id,   title,   slug,   mainImage,  year,  "categories": coalesce(    categories[]->{      _id,      slug,      title    },    []  )}
+export type POSTS_QUERYResult = Array<{
+  _id: string;
+  title: string | null;
+  slug: Slug | null;
+  mainImage: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    alt?: string;
+    _type: "image";
+  } | null;
+  year: string | null;
+  categories: Array<{
+    _id: string;
+    slug: Slug | null;
+    title: string | null;
+  }> | Array<never>;
+}>;
+// Variable: POSTS_SLUGS_QUERY
+// Query: *[_type == "post" && defined(slug.current)]{   "slug": slug.current}
+export type POSTS_SLUGS_QUERYResult = Array<{
+  slug: string | null;
+}>;
+// Variable: POST_QUERY
+// Query: *[_type == "post" && slug.current == $slug][0]{  title,   body,   mainImage,  "categories": coalesce(    categories[]->{      _id,      slug,      title,      year    },    []  )}
+export type POST_QUERYResult = {
+  title: string | null;
+  body: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "blockquote" | "h1" | "h2" | "h3" | "h4" | "normal";
+    listItem?: "bullet";
+    markDefs?: Array<{
+      href?: string;
+      _type: "link";
+      _key: string;
+    }>;
+    level?: number;
+    _type: "block";
+    _key: string;
+  } | {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    alt?: string;
+    _type: "image";
+    _key: string;
+  }> | null;
+  mainImage: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    alt?: string;
+    _type: "image";
+  } | null;
+  categories: Array<{
+    _id: string;
+    slug: Slug | null;
+    title: string | null;
+    year: null;
+  }> | Array<never>;
+} | null;
+// Variable: CAT_POSTS_QUERY
+// Query: *[_type == "post" && defined(slug.current) && $categorySlug in categories[]->slug.current][0...20]{  _id,   title,   slug,   mainImage,  year,  "categories": coalesce(    categories[]->{      _id,      slug,      title    },    []  )}
+export type CAT_POSTS_QUERYResult = Array<{
+  _id: string;
+  title: string | null;
+  slug: Slug | null;
+  mainImage: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    alt?: string;
+    _type: "image";
+  } | null;
+  year: string | null;
+  categories: Array<{
+    _id: string;
+    slug: Slug | null;
+    title: string | null;
+  }> | Array<never>;
+}>;
+// Variable: CATEGORY_QUERY
+// Query: *[_type == "category" && slug.current == $slug][0]{    _id,    title,    description,    slug  }
+export type CATEGORY_QUERYResult = {
+  _id: string;
+  title: string | null;
+  description: string | null;
+  slug: Slug | null;
+} | null;
+
+// Query TypeMap
+import "@sanity/client";
+declare module "@sanity/client" {
+  interface SanityQueries {
+    "*[_type == \"post\" && defined(slug.current)][0...20]{\n  _id, \n  title, \n  slug, \n  mainImage,\n  year,\n  \"categories\": coalesce(\n    categories[]->{\n      _id,\n      slug,\n      title\n    },\n    []\n  )\n}": POSTS_QUERYResult;
+    "*[_type == \"post\" && defined(slug.current)]{ \n  \"slug\": slug.current\n}": POSTS_SLUGS_QUERYResult;
+    "*[_type == \"post\" && slug.current == $slug][0]{\n  title, \n  body, \n  mainImage,\n  \"categories\": coalesce(\n    categories[]->{\n      _id,\n      slug,\n      title,\n      year\n    },\n    []\n  )\n}": POST_QUERYResult;
+    "*[_type == \"post\" && defined(slug.current) && $categorySlug in categories[]->slug.current][0...20]{\n  _id, \n  title, \n  slug, \n  mainImage,\n  year,\n  \"categories\": coalesce(\n    categories[]->{\n      _id,\n      slug,\n      title\n    },\n    []\n  )\n}": CAT_POSTS_QUERYResult;
+    "*[_type == \"category\" && slug.current == $slug][0]{\n    _id,\n    title,\n    description,\n    slug\n  }\n  ": CATEGORY_QUERYResult;
+  }
+}

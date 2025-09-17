@@ -37,6 +37,13 @@
     border-bottom: 1px solid #9cc66d;
 }
 
+.menuItem:hover {
+    text-decoration: underline;
+    text-decoration-thickness: 3px;
+    text-decoration-color: #9cc66d;
+    text-underline-offset: 3px;
+}
+
 @media (max-width: 1150px) {
     .sidebarCont {
         width: 30%;
@@ -68,7 +75,7 @@
     }
 }
 
-@media (max-width: 428px) {
+@media (max-width: 408px) {
     .navCont {
         display: none;
     }
