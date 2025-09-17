@@ -75,10 +75,12 @@ a {
 }
 
 .flex-row {
+    display: flex;
     flex-direction: row;
 }
 
 .flex-col {
+    display: flex;
     flex-direction: column;
 }
 
@@ -689,4 +691,8 @@ a {
 
 .text-white {
     color: white;
+}
+
+.crosshair {
+    cursor: crosshair;
 }
