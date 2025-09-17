@@ -5,9 +5,11 @@ export default function Header() {
 
     return (
         <div className='headerCont'>
-            <div>
+            <Link href={"/"}>
                 <h1 className='logo'>Samewave 7</h1>
-            </div>
+            </Link>
+
+
             <nav className='navCont'>
                 <Link href="/fabric" className="menuItem">TEXTILE</Link>
                 <Link href="/yarn" className="menuItem">STRING</Link>
