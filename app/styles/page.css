@@ -1,0 +1,23 @@
+.pageCont {
+    width: 100%;
+}
+
+.mainContent {
+    background-color: white;
+    margin-top: 50px;
+    width: 100%;
+    overflow-y: auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    list-style: none;
+    margin-bottom: 50px;
+}
+
+.postTitle {
+    margin-bottom: 2rem;
+}
+
+.galleryTitle {
+    font-weight: bold;
+    margin-bottom: 2rem;
+}
