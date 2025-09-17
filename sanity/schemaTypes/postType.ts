@@ -39,7 +39,6 @@ export const postType = defineType({
 
             return !value && parent?.asset?._ref ? 'Alt text is required when an image is present' : true
           }),
-
         })
       ]
     }),
