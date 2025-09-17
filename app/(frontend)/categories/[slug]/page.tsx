@@ -4,8 +4,8 @@ import { sanityFetch } from "@/sanity/lib/live";
 import { CAT_POSTS_QUERY, CATEGORY_QUERY } from "@/sanity/lib/queries";
 import { Post } from "@/app/components/post";
 
-export default async function CategoryPage({ params }: { params: { slug: string } }) {
-    const { slug } = params;
+export default async function CategoryPage({ params }: { params: Promise<{ slug: string }> }) {
+    const { slug } = await params;
 
     const categoryRes = await sanityFetch({
         query: CATEGORY_QUERY,
