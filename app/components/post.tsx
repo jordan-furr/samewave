@@ -4,7 +4,7 @@ import Image from 'next/image'
 import { Categories } from './Categories'
 
 export function Post(props: POSTS_QUERYResult[0]) {
-    const { title, mainImage, categories, year } = props
+    const { title, mainImage, year, categories } = props
 
     return (
         <main>
