@@ -25,7 +25,7 @@ export default async function CategoryPage({ params }: { params: { slug: string 
                 <div className="mainContent">
                     <div className="postsHalf">
                         {posts.length > 0 ? (
-                            posts.map((post: any) => (
+                            posts.map((post) => (
                                 <li key={post._id}>
                                     <Post {...post} />
                                 </li>
