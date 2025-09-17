@@ -36,7 +36,7 @@ export const POST_QUERY = defineQuery(`*[_type == "post" && slug.current == $slu
   )
 }`)
 
-export const CAT_POSTS_QUERY = defineQuery(`*[_type == "post" && defined(slug.current) && $categorySlug in categories[]->slug.current][0...18]{
+export const CAT_POSTS_QUERY = defineQuery(`*[_type == "post" && defined(slug.current) && $slug in categories[]->slug.current][0...18]{
   _id, 
   title, 
   slug, 

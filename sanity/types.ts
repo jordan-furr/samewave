@@ -287,7 +287,7 @@ export type AllSanitySchemaTypes = Post | Author | Category | BlockContent | San
 export declare const internalGroqTypeReferenceTo: unique symbol;
 // Source: sanity/lib/queries.ts
 // Variable: POSTS_QUERY
-// Query: *[_type == "post" && defined(slug.current)][0...20]{  _id,   title,   slug,   mainImage,  year,  "categories": coalesce(    categories[]->{      _id,      slug,      title    },    []  )}
+// Query: *[_type == "post" && defined(slug.current)][0...18]{  _id,   title,   slug,   mainImage,  year,  "categories": coalesce(    categories[]->{      _id,      slug,      title    },    []  )}
 export type POSTS_QUERYResult = Array<{
   _id: string;
   title: string | null;
@@ -373,7 +373,7 @@ export type POST_QUERYResult = {
   }> | Array<never>;
 } | null;
 // Variable: CAT_POSTS_QUERY
-// Query: *[_type == "post" && defined(slug.current) && $categorySlug in categories[]->slug.current][0...20]{  _id,   title,   slug,   mainImage,  year,  "categories": coalesce(    categories[]->{      _id,      slug,      title    },    []  )}
+// Query: *[_type == "post" && defined(slug.current) && $slug in categories[]->slug.current][0...18]{  _id,   title,   slug,   mainImage,  year,  "categories": coalesce(    categories[]->{      _id,      slug,      title    },    []  )}
 export type CAT_POSTS_QUERYResult = Array<{
   _id: string;
   title: string | null;
@@ -411,10 +411,10 @@ export type CATEGORY_QUERYResult = {
 import "@sanity/client";
 declare module "@sanity/client" {
   interface SanityQueries {
-    "*[_type == \"post\" && defined(slug.current)][0...20]{\n  _id, \n  title, \n  slug, \n  mainImage,\n  year,\n  \"categories\": coalesce(\n    categories[]->{\n      _id,\n      slug,\n      title\n    },\n    []\n  )\n}": POSTS_QUERYResult;
+    "*[_type == \"post\" && defined(slug.current)][0...18]{\n  _id, \n  title, \n  slug, \n  mainImage,\n  year,\n  \"categories\": coalesce(\n    categories[]->{\n      _id,\n      slug,\n      title\n    },\n    []\n  )\n}": POSTS_QUERYResult;
     "*[_type == \"post\" && defined(slug.current)]{ \n  \"slug\": slug.current\n}": POSTS_SLUGS_QUERYResult;
     "*[_type == \"post\" && slug.current == $slug][0]{\n  title, \n  body, \n  mainImage,\n  \"categories\": coalesce(\n    categories[]->{\n      _id,\n      slug,\n      title,\n      year\n    },\n    []\n  )\n}": POST_QUERYResult;
-    "*[_type == \"post\" && defined(slug.current) && $categorySlug in categories[]->slug.current][0...20]{\n  _id, \n  title, \n  slug, \n  mainImage,\n  year,\n  \"categories\": coalesce(\n    categories[]->{\n      _id,\n      slug,\n      title\n    },\n    []\n  )\n}": CAT_POSTS_QUERYResult;
+    "*[_type == \"post\" && defined(slug.current) && $slug in categories[]->slug.current][0...18]{\n  _id, \n  title, \n  slug, \n  mainImage,\n  year,\n  \"categories\": coalesce(\n    categories[]->{\n      _id,\n      slug,\n      title\n    },\n    []\n  )\n}": CAT_POSTS_QUERYResult;
     "*[_type == \"category\" && slug.current == $slug][0]{\n    _id,\n    title,\n    description,\n    slug\n  }\n  ": CATEGORY_QUERYResult;
   }
 }

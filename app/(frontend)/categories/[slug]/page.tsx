@@ -4,8 +4,12 @@ import { sanityFetch } from "@/sanity/lib/live";
 import { CAT_POSTS_QUERY, CATEGORY_QUERY } from "@/sanity/lib/queries";
 import { Post } from "@/app/components/post";
 
+
 export default async function CategoryPage({ params }: { params: Promise<{ slug: string }> }) {
     const { slug } = await params;
+
+    const { data: posts } = await sanityFetch({query: CAT_POSTS_QUERY, params: {slug}});
+    if (!posts) return <p>Category not found</p>;
 
     const categoryRes = await sanityFetch({
         query: CATEGORY_QUERY,
@@ -14,10 +18,6 @@ export default async function CategoryPage({ params }: { params: Promise<{ slug:
 
     const category = categoryRes.data
 
-    const { data: posts } = await sanityFetch({
-        query: CAT_POSTS_QUERY,
-        params: { categorySlug: slug },
-    });
 
     return (
         <main>
