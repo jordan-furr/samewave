@@ -23,6 +23,7 @@ export default async function CategoryPage({ params }: { params: Promise<{ slug:
         <main>
             <div className="pageCont">
                 <div className="mainContent">
+                    <div className="grid-bg"></div>
                     <div className="postsHalf">
                         {posts.length > 0 ? (
                             posts.map((post) => (
