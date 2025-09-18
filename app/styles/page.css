@@ -116,8 +116,17 @@
     }
 }
 
+@media (min-width: 1518px) {
+    .postsHalf {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+
 @media (max-width: 558px) {
     .desktop {
         display: none;
     }
 }
+
