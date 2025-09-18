@@ -31,7 +31,7 @@ export default function MenuOverlay({ onClose, isOpen }: MenuOverlayProps) {
                             <Link
                                 key={href}
                                 href={href}
-                                className={isActive ? "activeMenuItem mb3" : "menuItem mb1"}
+                                className={isActive ? "activeMenuItem mb3" : "menuItem mb2"}
                                 onClick={onClose}
                             >
                                 {label}
@@ -40,7 +40,7 @@ export default function MenuOverlay({ onClose, isOpen }: MenuOverlayProps) {
                     })}
                 </div>
                 
-                <Link href={"/about"} onClick={onClose}
+                <Link href={"/about"} onClick={onClose} className="menuItem"
                 >
                     ABOUT
                 </Link>

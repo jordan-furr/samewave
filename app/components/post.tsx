@@ -29,11 +29,11 @@ export function Post(props: POSTS_QUERYResult[0]) {
                         />
                     ) : null}
                 </div>
-                <div className='w-100 flex-col mb6'>
+                <div className='w-100 flex-col mb4'>
                     <span className=''>
                         {title}
                     </span>
-                    {year}
+                    Year: {year}
                     <Categories categories={categories} />
                 </div>
             </div>
