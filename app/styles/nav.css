@@ -11,6 +11,14 @@
     overflow-y: hidden;
 }
 
+.menuToggle {
+    display: none;
+    position: fixed;
+    right: 1rem;
+    z-index: 2000;
+    cursor: pointer;
+}
+
 .logo {
     font-size: 1rem;
     font-weight: normal;
@@ -21,6 +29,8 @@
 }
 
 .navCont {
+    position: fixed;
+    right: 1rem;
     display: flex;
     gap: .75rem;
 }
@@ -61,6 +71,47 @@ p {
     text-underline-offset: 3px;
 }
 
+
+
+.menuOverlay {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100%;
+    transition: max-height 0.5s ease;
+    background: white;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    z-index: 1005;
+    transform: translateX(100%);
+    transition: transform 0.15s;
+    min-height: 100vh;
+}
+
+.menuOverlay.menuOpen {
+    min-height: 100vh;
+    transform: translateX(0);
+}
+
+.menuCont {
+    padding: 2rem;
+    padding-top: 1rem;
+    display: flex;
+    flex-direction: column;
+}
+
+
+
+
+
+
+
+
+
+
+
+
 @media (max-width: 1150px) {
     .sidebarCont {
         width: 30%;
@@ -99,4 +150,7 @@ p {
     .navCont {
         display: none;
     }
+    .menuToggle {
+    display: block; 
+  }
 }
