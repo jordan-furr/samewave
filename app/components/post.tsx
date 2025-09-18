@@ -14,7 +14,7 @@ export function Post(props: POSTS_QUERYResult[0]) {
                         <Image
                             className=""
                             src={urlFor(mainImage)
-                                .quality(90)
+                                .quality(80)
                                 .auto("format")
                                 .url()}
                             alt={mainImage?.alt || title || ""}
