@@ -1,10 +1,39 @@
 'use client';
 import Link from 'next/link';
 import "../styles/nav.css";
+import "../globals.css";
 import { usePathname } from 'next/navigation';
+import { useState, useRef, useEffect } from 'react';
+import MenuOverlay from './menuOverlay';
+
 
 export default function Header() {
+    const [menuOpen, setMenuOpen] = useState(false);
     const pathname = usePathname();
+    const menuRef = useRef<HTMLDivElement>(null);
+    const menuToggleRef = useRef<HTMLDivElement>(null);
+
+    const toggleMenu = () => setMenuOpen(!menuOpen);
+    const closeMenu = () => setMenuOpen(false);
+
+    useEffect(() => {
+        function handleClickOutside(event: MouseEvent) {
+            if (menuOpen &&
+                menuRef.current &&
+                !menuRef.current.contains(event.target as Node) &&
+                menuToggleRef.current &&
+                !menuToggleRef.current.contains(event.target as Node)) {
+                closeMenu();
+            }
+        }
+
+
+        document.addEventListener('mousedown', handleClickOutside);
+
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
+    }, [menuOpen]);
 
 
     const links = [
@@ -19,9 +48,7 @@ export default function Header() {
             <Link href={"/"}>
                 <h1 className='logo'>SAMEWAVE 7</h1>
             </Link>
-
             <nav className='navCont'>
-                <p className=''>medium:</p>
                 {links.map(({ href, label }) => {
                     const isActive = pathname === href;
                     return (
@@ -35,6 +62,13 @@ export default function Header() {
                     )
                 })}
             </nav>
+            {/*mobile*/}
+            <div className='menuToggle' onClick={toggleMenu} ref={menuToggleRef}>
+                MENU
+            </div>
+            <div ref={menuRef}>
+                <MenuOverlay isOpen={menuOpen} onClose={closeMenu} />
+            </div>
         </div>
     );
 }
