@@ -13,7 +13,7 @@ export const metadata: Metadata = {
     siteName: 'Samewave 7',
     images: [
       {
-        url: 'https://www.samewave7.com/stitch_logo.png',
+        url: 'https://www.samewave7.com/samewave-grid.png',
         width: 860,
         height: 803,
         alt: 'Hope Retreats in Normandy',
