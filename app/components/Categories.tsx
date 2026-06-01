@@ -1,7 +1,7 @@
-import { POSTS_QUERYResult } from '@/sanity/types'
+import { POSTS_QUERY_RESULT } from '@/sanity/types'
 
 type CategoriesProps = {
-  categories: NonNullable<POSTS_QUERYResult[0]>['categories']
+  categories: NonNullable<POSTS_QUERY_RESULT[0]>['categories']
 }
 
 export function Categories({ categories }: CategoriesProps) {
