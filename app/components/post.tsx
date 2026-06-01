@@ -1,9 +1,9 @@
-import { POSTS_QUERYResult } from '@/sanity/types'
+import { POSTS_QUERY_RESULT } from '@/sanity/types'
 import { urlFor } from '@/sanity/lib/image'
 import Image from 'next/image'
 import { Categories } from './Categories'
 
-export function Post(props: POSTS_QUERYResult[0]) {
+export function Post(props: POSTS_QUERY_RESULT[0]) {
     const { title, mainImage, year, categories } = props
 
     return (
