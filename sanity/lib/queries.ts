@@ -1,6 +1,6 @@
 import { defineQuery } from 'next-sanity'
 
-export const POSTS_QUERY = defineQuery(`*[_type == "post" && defined(slug.current)]|order(year desc)[0...18]{
+export const POSTS_QUERY = defineQuery(`*[_type == "post" && defined(slug.current)]|order(year desc){
   _id, 
   title, 
   slug, 
@@ -29,14 +29,13 @@ export const POST_QUERY = defineQuery(`*[_type == "post" && slug.current == $slu
     categories[]->{
       _id,
       slug,
-      title,
-      year
+      title
     },
     []
   )
 }`)
 
-export const CAT_POSTS_QUERY = defineQuery(`*[_type == "post" && defined(slug.current) && $slug in categories[]->slug.current]|order(year desc)[0...18]{
+export const CAT_POSTS_QUERY = defineQuery(`*[_type == "post" && defined(slug.current) && $slug in categories[]->slug.current]|order(year desc){
   _id, 
   title, 
   slug, 
