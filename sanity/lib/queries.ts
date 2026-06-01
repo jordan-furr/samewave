@@ -29,7 +29,8 @@ export const POST_QUERY = defineQuery(`*[_type == "post" && slug.current == $slu
     categories[]->{
       _id,
       slug,
-      title
+      title,
+      year
     },
     []
   )
