@@ -26,8 +26,7 @@ export default async function Home() {
             <Link href={"https://www.instagram.com/samewave7/?hl=en"} target="_">Instagram</Link>
             <div className="happy4">
               
-              <p className="four">4</p>
-              <p>years of sw7</p>
+             
               
             </div>
           </div>
