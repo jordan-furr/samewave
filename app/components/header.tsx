@@ -35,6 +35,22 @@ export default function Header() {
         };
     }, [menuOpen]);
 
+    // The overlay covers the viewport, so without this the page scrolls behind it
+    // and you land somewhere else when the menu closes. globals.css puts
+    // `overflow-x: hidden` on <html>, which makes <html> the scrolling element and
+    // stops body's overflow from propagating to the viewport - so lock it there.
+    useEffect(() => {
+        if (!menuOpen) return;
+
+        const root = document.documentElement;
+        const previous = root.style.overflow;
+        root.style.overflow = 'hidden';
+
+        return () => {
+            root.style.overflow = previous;
+        };
+    }, [menuOpen]);
+
 
     const links = [
         { href: "/categories/textile", label: "TEXTILE" },

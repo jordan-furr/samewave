@@ -27,7 +27,6 @@
         linear-gradient(90deg, var(--color) var(--line), transparent var(--line));
     background-size: var(--gap) var(--gap);
 
-    background-attachment: fixed;
     background-position: 0 0;
 
     height: 100vh;
@@ -99,7 +98,12 @@
         width: 33%;
         position: fixed;
         right: 0;
+        /* The panel starts 48px down (14px .pageCont padding + 34px .mainContent
+           margin). Without a bounded height, overflow-y:auto can never engage and
+           anything past the fold is unreachable on short viewports. */
+        max-height: calc(100vh - 48px);
         overflow-y: auto;
+        overscroll-behavior: contain;
     }
 
     .grid-bg {

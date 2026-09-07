@@ -369,6 +369,13 @@ export type CATEGORY_QUERY_RESULT = {
   slug: Slug | null;
 } | null;
 
+// Source: sanity/lib/queries.ts
+// Variable: CATEGORY_SLUGS_QUERY
+// Query: *[_type == "category" && defined(slug.current)]{  "slug": slug.current}
+export type CATEGORY_SLUGS_QUERY_RESULT = Array<{
+  slug: string | null;
+}>;
+
 // Query TypeMap
 import "@sanity/client";
 declare module "@sanity/client" {
@@ -378,5 +385,6 @@ declare module "@sanity/client" {
     '*[_type == "post" && slug.current == $slug][0]{\n  title, \n  body, \n  mainImage,\n  "categories": coalesce(\n    categories[]->{\n      _id,\n      slug,\n      title,\n      year\n    },\n    []\n  )\n}': POST_QUERY_RESULT;
     '*[_type == "post" && defined(slug.current) && $slug in categories[]->slug.current]|order(year desc){\n  _id, \n  title, \n  slug, \n  mainImage,\n  year,\n  "categories": coalesce(\n    categories[]->{\n      _id,\n      slug,\n      title\n    },\n    []\n  )\n}': CAT_POSTS_QUERY_RESULT;
     '*[_type == "category" && slug.current == $slug][0]{\n    _id,\n    title,\n    description,\n    slug\n  }\n  ': CATEGORY_QUERY_RESULT;
+    '*[_type == "category" && defined(slug.current)]{\n  "slug": slug.current\n}': CATEGORY_SLUGS_QUERY_RESULT;
   }
 }
