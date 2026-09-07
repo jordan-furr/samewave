@@ -18,7 +18,7 @@ export default function MenuOverlay({ onClose, isOpen }: MenuOverlayProps) {
     ];
 
     return (
-        <div className={`menuOverlay ${isOpen ? 'menuOpen' : ''}`}>
+        <div className={`menuOverlay ${isOpen ? 'menuOpen' : ''}`} inert={!isOpen}>
             <nav className="menuCont">
                 <Link href={"/"} onClick={onClose} className="mb6"
                 >

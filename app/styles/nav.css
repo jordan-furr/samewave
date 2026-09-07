@@ -1,6 +1,7 @@
 .headerCont {
     height: 3rem;
-    width: 100vw;
+    /* 100vw includes the scrollbar gutter and overflows the viewport */
+    width: 100%;
     position: fixed;
     padding: 1rem;
     display: flex;
@@ -78,20 +79,25 @@ p {
     top: 0;
     right: 0;
     width: 100%;
-    transition: max-height 0.5s ease;
     background: white;
     overflow: hidden;
+    overscroll-behavior: contain;
     display: flex;
     flex-direction: column;
     z-index: 1005;
     transform: translateX(100%);
-    transition: transform 0.15s;
+    /* visibility keeps the closed panel out of the tab order and off the paint
+       list; it flips back only after the slide-out finishes */
+    visibility: hidden;
+    transition: transform 0.15s, visibility 0s linear 0.15s;
     min-height: 100vh;
 }
 
 .menuOverlay.menuOpen {
     min-height: 100vh;
     transform: translateX(0);
+    visibility: visible;
+    transition: transform 0.15s, visibility 0s;
 }
 
 .menuCont {

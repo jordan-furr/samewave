@@ -59,3 +59,8 @@ export const CATEGORY_QUERY = defineQuery(`*[_type == "category" && slug.current
     slug
   }
   `)
+
+export const CATEGORY_SLUGS_QUERY =
+  defineQuery(`*[_type == "category" && defined(slug.current)]{
+  "slug": slug.current
+}`)
